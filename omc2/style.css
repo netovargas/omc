@@ -1,0 +1,116 @@
+html{
+  font-family: 'Monaco', monospace;
+  font-weight: 300;
+  font-size: 12pt;
+}
+body{
+	background-color: white;
+}
+.banner {
+	grid-area: header;
+	text-align: center;
+}
+h3 {
+	font-size: 18pt;
+	margin-top: 10px;
+}
+.banner-image {
+	width: 600px;
+}
+/* Nav bar style */
+.navbar{
+	text-align: center;
+}
+.navbar-list {
+	list-style-type: none; 
+}
+.navbar-item {
+	display: inline-block;
+	padding: 10px;
+}
+.navbar-item a{
+	text-decoration: none;
+	color:black;
+}
+
+/* Style specific to classes in archive style */
+.display_archive {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 480px;
+	padding-top: 50px;
+}
+.campaign {
+	text-align: left;
+}
+.campaign a {
+	color: #005BFE;
+	text-decoration: none;
+}
+
+/* Grid in main page */
+.gridwrapper {
+	margin: auto;
+	width: 800px;
+}
+.grid-container {
+	padding-left: auto;
+	padding-right: auto;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+}
+.grid-item {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+p{
+	text-align: left;
+	margin-bottom: 0;
+}
+.articleTitle{
+	text-decoration: none;
+	color: #005BFE;
+}
+.articleTitle:visited{
+	text-decoration: none;
+	color: #005BFE;
+}
+.readingtime {
+	color: darkgray;
+	margin-top: 0;
+	font-size: 12px;
+	font-style: italic;
+}
+.legend {
+	text-align: right;
+}
+
+/* Mobile */
+@media only screen and (max-width: 800px) {
+	.gridwrapper {
+		width: 360px;
+	}
+	.grid-container {
+		grid-template-columns: repeat(1, 1fr);
+	}
+	.banner-image {
+		width: 360px;
+	}
+	h3 {
+		font-size: 16pt;
+	}
+	.display_archive {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 360px;
+		padding-top: 50px;
+		font-size: 12pt;
+	}
+}
+
+/* 404 page */
+.errormsg {
+	text-align: center;
+}
