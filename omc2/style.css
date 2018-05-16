@@ -114,3 +114,9 @@ p{
 .errormsg {
 	text-align: center;
 }
+
+/* Info page */
+.info-container a{
+	color: #005BFE;
+	text-decoration: none;
+}

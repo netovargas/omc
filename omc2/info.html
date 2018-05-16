@@ -31,7 +31,50 @@
 		<div id="root"></div>
 
 		<div class="gridwrapper">
-			<div class="grid-container">
+			<div class="info-container">
+                <h4>About</h4>
+                <p>
+                    One Man Cult is your one-stop-shop for premium reads and links. Updated every Friday morning with the best stuff we can find on the web that week. Most of the time its long form pieces but we also try to include music, podcasts, t-shirts, art and whatever else we find. 
+                    <br><br>
+                    Most of links are about culture, music, fashion, art, technology and probably a little too much basketball. That said, anything interesting is worth sharing so we'll throw up those links as well. 
+                    <br>
+                </p><br>
+                <h4>Contact</h4>
+                <p>
+                    If you have comments, suggestions, submissions or maybe just miss the newsletter format and want us to bring it back. Reach out at info (at) onemancult (dot) co.
+                </p><br>
+                <h4>Inspiration</h4>
+                <p>
+                    I just wanted to use this section to shout out some other sites/people that are doing the lords work and bringing culture and cool sh*t to the people. I definitely wouldn't be where I am if I hadn't gotten to spend my formative years gathering all sorts of useless knowledge in my head. In no particular order, make sure to check out check out
+                    <a href="http://www.thebrilliance.com/">The Brilliance</a>, 
+                    <a href="http://publicannouncement.org/">Public Announcement</a>, 
+                    <a href="http://www.theworldsbestever.com/">The Worlds Best Ever</a>, 
+                    <a href="http://fridayfive.mgoldstein.nyc/">Friday Five by Mitch Goldstein</a>, 
+                    <a href="https://www.brainpickings.org/">Brain Pickings</a>,
+                    <a href="https://aquariumdrunkard.com/">Aquarium Drunkard</a> and a whole bunch of now defunct websites and blogs.
+                </p>  
+                <br>
+                <h4>Technology</h4>
+                <p>
+                    Previously the linkout came out as a weekly email newsletter but due to some life changes I no longer had much time to spend on it. With that in mind I set out to redesign OMC, first moving from an email newsletter to a linkout homepage. The goal was to create something that was low to no-maintenance but didn't sacrifice quality.
+                    <br><br>
+                    I settled on creating a static website that updated dynamically behind the scenes. This way load times on desktop and mobile would be snappy and since the website would be mostly text, I had no need for a full backend with a database etc. For the backend I chose <a class="infolink" href="https://airtable.com/">Airtable</a>, a free, hosted spreadsheet/database hybrid (awesome product). Airtable is not the most high-performance database but for our purposes it was perfect. I set up a hosted form where with a single click I could paste a URL from my phone or computer and it would be sent off to the database.
+                    <br><br>
+                    The rest of the heavy lifting is all done by a script that essentially does three things once a week:
+                    <ul>
+                        <li>
+                            Take the link URL and run it through the <a class="infolink" href="https://mercury.postlight.com/web-parser/">Mercury Web Parser API</a> to gather all the relevant information about the link and then dump that back in Airtable.
+                        </li>
+                        <li>
+                            Reach back out to Airtable and gather the full information for the 60 most recent links and save those into a json file. This file serves as the "database" for the static site.
+                        </li>
+                        <li>
+                            Take the json file and put it on the host for the static site.
+                        </li>
+                    </ul>
+                    The static file then is only responsible for loading the article data from that file and showing it in real time. If you want to check out the code you can look at the <a class="infolink" href="https://github.com/netovargas/omc">git hub repo</a>. If you want to talk more about this stuff feel free to reach out at the email above.
+                </p>
+            </p>
 			</div>
 		</div>
     </body>
