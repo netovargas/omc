@@ -1,3 +1,20 @@
+// Returns the date of the last Friday that happened
+// and today's date if today is Friday.
+function getLastFriday()
+{
+  var date = new Date();
+  var day = date.getDay();
+  var prevFriday;
+  if(date.getDay() == 4){
+    prevFriday = date;
+  } else if (date.getDay() == 5 || date.getDay() == 6) {
+    prevFriday = new Date().setDate(date.getDate() - (date.getDay() % 4));
+  } else {
+    prevFriday = new Date().setDate(date.getDate() - ((date.getDay() + 7) % 4));
+  }
+  return prevFriday;
+}
+
 $(document).ready(function(){
     var jsondata;
     $.getJSON("articledata.json", function(data) {
@@ -12,9 +29,9 @@ $(document).ready(function(){
         // create div content
         var headlineText = jsondata[i]["title"];
         var createdDate = new Date(jsondata[i]["createdTime"]);
-        var today = new Date();
-        if ((today - createdDate) < 604800000) {
-          console.log(today - createdDate);
+        var lastFriday = getLastFriday();
+        if ((lastFriday - createdDate) < 604800000) {
+          console.log(lastFriday - createdDate);
           headlineText = "*" + headlineText;
         }
         var headline = $("<a></a>").text(headlineText).attr("href", jsondata[i]["url"]);

@@ -5,24 +5,33 @@
 #   parameter = url from airtable
 #   gather: title, lead image, excerpt, word count, reading time
 #   save into dict with all info
-# Take dict and put it back into airtable
-# Take dict and save it as text file into Amazon S3
+# 
+#  Take dict and put it back into airtable
+#  Take dict and save it as text file into Amazon S3
 #
-# Amazon S3 file is just a container for reading the static
-# text file with all the info.
+#  Amazon S3 file is just a container for reading the static
+#  text file with all the info.
 
 import requests
 import time
 import json
 import config
+import boto3
 
 def main():
-	#airtableupdate()
-	#airtableJsonOutput()
-	uploadToS3()
+	airtableupdate()
+	filename = airtableJsonOutput()
+	uploadToS3(filename)
 
-def uploadToS3():
-	print "in S3"
+def uploadToS3(filename):
+	s3 = boto3.client('s3',
+         aws_access_key_id = config.aws_access_key_id,
+         aws_secret_access_key = config.aws_secret_access_key)
+
+	bucketname = 'omcstatic'
+
+	s3.upload_file(filename, bucketname, filename)
+    	
 
 def airtableupdate():
 	# Set up Airtable headers, API call URL and paramters
@@ -77,7 +86,8 @@ def airtableupdate():
 
 def airtableJsonOutput():
 	# Create and open csv file and write header
-	jsonFile = open('articledata.json', "wb")
+	filename = 'articledata.json'
+	jsonFile = open(filename, "wb")
 
 	# Set up Airtable headers and API call URL
 	headers = {
@@ -121,6 +131,8 @@ def airtableJsonOutput():
 	print json.dump(outputDict,jsonFile)
 	#jsonFile.write()
 	jsonFile.close()
+
+	return filename
 
 def mercurycall(airtableUrl):
 	headers = {
