@@ -28,7 +28,7 @@ def uploadToS3(filename):
          aws_access_key_id = config.aws_access_key_id,
          aws_secret_access_key = config.aws_secret_access_key)
 
-	bucketname = 'omcstatic'
+	bucketname = 'onemancult.co'
 
 	s3.upload_file(filename, bucketname, filename)
     	
