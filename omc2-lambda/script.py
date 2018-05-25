@@ -17,9 +17,10 @@ import time
 import json
 import config
 import boto3
+import sys
 
 def main():
-	airtableupdate()
+	#airtableupdate()
 	filename = airtableJsonOutput()
 	uploadToS3(filename)
 
@@ -28,7 +29,7 @@ def uploadToS3(filename):
          aws_access_key_id = config.aws_access_key_id,
          aws_secret_access_key = config.aws_secret_access_key)
 
-	bucketname = 'onemancult.co'
+	bucketname = 'www.onemancult.co'
 
 	s3.upload_file(filename, bucketname, filename)
     	

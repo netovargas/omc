@@ -30,12 +30,12 @@ $(document).ready(function(){
         var headlineText = jsondata[i]["title"];
         var createdDate = new Date(jsondata[i]["createdTime"]);
         var lastFriday = getLastFriday();
-        if ((lastFriday - createdDate) < 604800000) {
-          console.log(lastFriday - createdDate);
-          headlineText = "*" + headlineText;
-        }
         var headline = $("<a></a>").text(headlineText).attr("href", jsondata[i]["url"]);
         headline.attr("class", "articleTitle");
+        if ((lastFriday - createdDate) < 604800000) {
+          console.log(lastFriday - createdDate);
+          headline.prepend("<sup>new</sup>");
+        }
         var readTime;
         if (jsondata[i]["type"] == "read") {
           if (jsondata[i]["readTime"] == -1) {
