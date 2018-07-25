@@ -127,8 +127,8 @@ sup {
 	.grid-container {
 		grid-template-columns: repeat(1, 1fr);
 	}
-	.banner-image {
-		width: 300px;
+	.banner-title {
+		font-size: 36pt;
 	}
 	h3 {
 		font-size: 16pt;
