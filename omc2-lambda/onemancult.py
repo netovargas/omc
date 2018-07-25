@@ -20,6 +20,60 @@ import boto3
 import sys
 
 def main():
+	prompt = """
+	Select the mode you want to run by entering the number
+	associated with each option below.
+		1 - Update Airtable from Mercury API
+		2 - Regenerate JSON file from Airtable
+		3 - Submit JSON file to One Man Cult website (AWS)
+		4 - *Update Airtable, generate JSON file and submit
+			to AWS (full workflow)*
+		5 - Submit email to Mailchimp subscribers
+		p - Print options again
+		q - Quit
+	"""
+	print (prompt)
+
+	response = -1
+	while (response != 'q'):
+		response = raw_input("Option: ")
+		
+		if (response == '1'):
+			# Update the Airtable base with the article information by
+			# running all articles that are missing data through the
+			# Mercury API.
+			airtableupdate()
+		elif (response == '2'):
+			# Generates a JSON file with the article data from Airtable
+			# and saves it to the same directory as this file. Does not
+			# submit the file to the S3 bucket.
+			airtableJsonOutput()
+		elif (response == '3'):
+			# Note: This option assumes the filename is articledata.json
+			# and is in the directory of this file.
+			#
+			# This will submit the file that is in this directory to the
+			# S3 bucket.
+			filename = 'articledata.json'
+			uploadToS3(filename)
+		elif (response == '4'):
+			# This option will update the Airtable base using Mercury,
+			# generate a JSON file from it and then submit that file to
+			# the S3 AWS bucket. This option is the same as the original
+			# script.
+			airtableupdate()
+			filename = airtableJsonOutput()
+			uploadToS3(filename)
+		elif (response == '5'):
+			print "This option has not been implemented yet. You can choose another one."
+		elif (response == 'q'):
+			exit()
+		elif (response == 'p'):
+			print prompt
+		else:
+			print "Invalid response. Please enter another option from the ones above."
+
+def main2():
 	airtableupdate()
 	filename = airtableJsonOutput()
 	uploadToS3(filename)
@@ -33,7 +87,6 @@ def uploadToS3(filename):
 
 	s3.upload_file(filename, bucketname, filename)
     	
-
 def airtableupdate():
 	# Set up Airtable headers, API call URL and paramters
 	headers = {
