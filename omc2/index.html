@@ -31,22 +31,33 @@
 
         <div class="navbar">
             <ul class="navbar-list">
-                <li class="navbar-item"><a href="archive.html">archive</a></li>
-                <li class="navbar-item"><a href="info.html">info</a></li>
+                <li class="navbar-item"><a href="archive.html">Archive</a></li>
+                <li class="navbar-item"><a href="info.html">Info</a></li>
             </ul>
         </div>
-
+        
 		<div class="banner">
-            <img class="banner-image" src="./banner.jpg" alt="">
-            <h3>A weekly link out.</h3>
-		</div>
+            <a href="index.html" class="banner-title">
+                ONE MAN CULT
+            </a>
+            <h3 class="sub-banner">A (mostly) weekly link out.</h3>
+        </div>
+        <div class="filters">
+            <ul class="filters-list">
+                <li class="filters-item" onclick="loadFilter('all')">All</li>
+                <li class="filters-item" onclick="loadFilter('read')">Read</li>
+                <li class="filters-item" onclick="loadFilter('music')">Music</li>
+                <li class="filters-item" onclick="loadFilter('podcast')">Podcast</li>
+                <li class="filters-item" onclick="loadFilter('video')">Watch</li>
+                <li class="filters-item" onclick="loadFilter('shop')">Shop</li>
+            </ul>
+        </div>
 
 		<div id="root"></div>
 
 		<div class="gridwrapper">
 			<div class="grid-container">
             </div>
-            <p class="legend">* = New this week.</p>
 		</div>
     </body>
 </html>	

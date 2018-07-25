@@ -20,7 +20,7 @@ import boto3
 import sys
 
 def main():
-	#airtableupdate()
+	airtableupdate()
 	filename = airtableJsonOutput()
 	uploadToS3(filename)
 
@@ -83,6 +83,7 @@ def airtableupdate():
 		#print r
 		# API has limit of 5 calls per second, wait so it doesn't
 		# time out.
+		#print "Updated: " + fieldDict.Title
 		time.sleep(.25)
 
 def airtableJsonOutput():

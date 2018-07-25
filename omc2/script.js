@@ -15,6 +15,16 @@ function getLastFriday()
   return prevFriday;
 }
 
+function loadFilter(filterType)
+{
+  if (filterType == 'all') {
+    $(".grid-item").css( "display", "inline" );
+  } else {
+    $(".grid-item").css( "display", "none" );
+    $("."+filterType).css( "display", "inline");
+  }
+}
+
 $(document).ready(function(){
     var jsondata;
     $.getJSON("articledata.json", function(data) {
@@ -25,7 +35,7 @@ $(document).ready(function(){
       for (var i in jsondata) {
         // create article div
         var articleDiv = $("<div></div>");
-        articleDiv.attr("class", "grid-item");
+        articleDiv.attr("class", "grid-item " + jsondata[i]["type"]);
         // create div content
         var headlineText = jsondata[i]["title"];
         var createdDate = new Date(jsondata[i]["createdTime"]);
